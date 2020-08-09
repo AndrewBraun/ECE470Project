@@ -35,6 +35,17 @@ def createDir(directory):
             pass
 
 
+def split(string):
+    divisors = [',', ';', 'and', '&', 'as well as']
+    result = [string]
+    for char in divisors:
+        temp = []
+        for newString in result:
+            temp = temp + newString.split(char)
+        result = temp
+    return result
+
+
 JUSTICES = 'justice.js'
 
 MASTER = os.getcwd()
@@ -56,7 +67,7 @@ for Year in CasesFoldersYears:
             if caseDetails:
                 try:
                     wikiData = caseDetails['wikiData']  # WikiData contains the details of the persons involved
-                    Majority = wikiData['JoinMajority'].split(',')  # Get the name of the judge
+                    Majority = split(wikiData['Majority']) + split(wikiData['JoinMajority'])  # Get the name of the judge
                     ''' 
                     JoinMajority = wikiData['JoinMajority'].split(',')
                     Concurrence = wikiData['Concurrence'].split(',')
