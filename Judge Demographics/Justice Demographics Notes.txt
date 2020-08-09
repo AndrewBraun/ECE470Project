@@ -1,0 +1,8 @@
+Removed all rows where success = 0.
+For any justice who were first appointed by recess and then approved by the Senate (which is every justice appointed by recess except for John Rutledge), only the recess row is included, with the second nomination row being deleted.
+The dataset contains many ID columns from different sources. We can pick just one.
+lawschn: changed all instances of 888 to 0.
+militbr: changed all instances of 888 to 0.
+privtyp1: chaned all instances of 888 to 0.
+
+Unofrtunately, it seems like every justice up until Felix Frankfurter has missing inf regarding political ideology leanings, so we may have to limit our scope to newer judges.
