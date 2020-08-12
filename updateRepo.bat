@@ -1,5 +1,7 @@
 git add .
 
-git commit
+git commit -m "Update"
+
+git pull
 
 git push
