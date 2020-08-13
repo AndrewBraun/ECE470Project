@@ -1,6 +1,6 @@
 git add .
 
-git commit -m "Update"
+git commit -m "Added summary to .py file"
 
 git pull
 
