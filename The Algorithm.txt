@@ -1,6 +1,0 @@
-**FEEL FREE TO BRAINSTORM**
-
-The names of the judges do not matter except to link them to their cases.
-
-We utilitze their demographic as summarized in the python file to predict 
-their likelihood of ruling in favour-of or against.
