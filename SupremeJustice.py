@@ -1,4 +1,6 @@
 """
+TITLE: LOOKING FOR BIAS IN SUPREME COURT JUSTICES
+
 READING THE JUSTICE DEMOGRAPHIC:
     name: Last name, First name [Can appear multiple times]
     posit: Nominated for Chief or Associate Justice
@@ -147,18 +149,23 @@ READING THE JUSTICE DEMOGRAPHIC:
 
 
 THE ALGORITHM:
+    We will extract a certain number of justices and court cases from the full dataset to get our training dataset.
+    For each judge, we compare their demographics to their voting records and find if there is any correlation.
+    We will also calculate the agreement rate between any two judges on the same case,
+        and look at what demographic factors affect the agreement rate.
 
+ENCOUNTERED PROBLEMS:
 
 """
 import os
-import sklearn
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, confusion_matrix
 
 #  FOLDERS
-CurrentDir = os.getcwd()
+JudgeDemographics = CurrentDir + ".\\Judge Demographics"
 
-JudgeDemographics = CurrentDir + "\\Judge Demographics"
-
-MajorityJudgeCases = CurrentDir + "\\Majority Judges"
+MajorityJudgeCases = CurrentDir + ".\\Majority Judges"
 
 
 
