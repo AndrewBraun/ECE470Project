@@ -158,15 +158,18 @@ ENCOUNTERED PROBLEMS:
 
 """
 import os
+import pandas
+import openpyxl
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 
+
 #  FOLDERS
-JudgeDemographics = CurrentDir + ".\\Judge Demographics"
+MajorityJudgeCases = ".\\Majority Judges"
+JudgeDemographics = ".\\Judge Demographics\\Justices Demographics.xlsx"
 
-MajorityJudgeCases = CurrentDir + ".\\Majority Judges"
-
-
-
-
+# Read the XLSX file. Returns a dictionary
+ReadJudgeDemographics = pandas.read_excel(JudgeDemographics)
+# The keys are the headers of the excel table
+print(ReadJudgeDemographics['name'])
