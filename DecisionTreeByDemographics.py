@@ -155,7 +155,7 @@ THE ALGORITHM:
         and look at what demographic factors affect the agreement rate.
 
 ENCOUNTERED PROBLEMS:
-
+    Correlating the demographics with the cases.
 """
 import os
 import pandas
@@ -167,9 +167,19 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 
 #  FOLDERS
 MajorityJudgeCases = ".\\Majority Judges"
-JudgeDemographics = ".\\Judge Demographics\\Justices Demographics.xlsx"
+JudgeDemographics_File = ".\\Judge Demographics\\Justices Demographics.xlsx"
 
-# Read the XLSX file. Returns a dictionary
-ReadJudgeDemographics = pandas.read_excel(JudgeDemographics)
-# The keys are the headers of the excel table
-print(ReadJudgeDemographics['name'])
+# READ the XLSX file: Returns a dictionary # where the keys/columns are the headers of the excel table
+JudgeDemographics = pandas.read_excel(JudgeDemographics_File)
+
+# CLEANING the Data: Removes rows will NULL points
+JudgeDemographics = JudgeDemographics.dropna()
+
+# PREREQUISITE to Training: Get the Independent & Dependent Features
+YFeatures = ['ideo']  # ??
+XFeatures = JudgeDemographics.keys().remove('ideo')  # ??
+
+# TRAINING the Model: Grow the tree
+
+
+

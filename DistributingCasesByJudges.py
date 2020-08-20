@@ -67,7 +67,8 @@ for Year in CasesFoldersYears:
             if caseDetails:
                 try:
                     wikiData = caseDetails['wikiData']  # WikiData contains the details of the persons involved
-                    Majority = split(wikiData['Majority']) + split(wikiData['JoinMajority'])  # Get the name of the judge
+                    Majority = split(wikiData['Majority']) + split(wikiData['JoinMajority'])  # Get the name of the
+                    # judge
                     ''' 
                     JoinMajority = wikiData['JoinMajority'].split(',')
                     Concurrence = wikiData['Concurrence'].split(',')
@@ -87,4 +88,3 @@ for Year in CasesFoldersYears:
 
     except NotADirectoryError:
         continue
-
