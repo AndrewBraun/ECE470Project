@@ -158,11 +158,22 @@ ENCOUNTERED PROBLEMS:
     Correlating the demographics with the cases.
 """
 import os
+import numpy
 import pandas
 import openpyxl
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
+
+"""Accuracy = accuracy_score(numpy.array([0.1, 0.078, 0.2, 0.0005], dtype=int),
+                          numpy.array([0.343, 0.45, 0.2, 0.001], dtype=int))
+print(Accuracy)"""
+def AccuracyScore(true, predicted):
+    return 0
+
+def ConfusionMatrix(true, predicted):
+    return []
+
 
 #  DATA SET
 MajorityJudgeCases = ".\\Majority Judges"
@@ -186,11 +197,18 @@ XData = JudgeDemographics[XFeatures].copy()  # Independent Features
 
 # TRAINING the Model: Grow the tree
 XTrain, XTest, YTrain, YTest = train_test_split(XData, YData, test_size=0.3)
-Classifier = DecisionTreeClassifier()
-Classifier.fit(XTrain, YTrain)
+decisionTreeRegressor = DecisionTreeRegressor()
+decisionTreeRegressor.fit(XTrain, YTrain)
 
 # TESTING the Model
-YPredicted = Classifier.predict(XTest)
-Accuracy = accuracy_score(YTest, YPredicted)
-ConfusionMatrix = confusion_matrix(YTest, YPredicted)
-
+YPredicted = decisionTreeRegressor.predict(XTest)
+YPredicted = numpy.array(YPredicted, dtype=float)
+print(YPredicted)
+YTest = YTest[YFeatures].values
+YTestValues = []
+for values in YTest:
+    YTestValues.append(values[0])
+YTestValues = numpy.array(YTestValues, dtype=float)
+print(YTestValues)
+Accuracy = AccuracyScore(YTestValues, YPredicted)  # Does not support float
+ConfusionMatrix = ConfusionMatrix(YTestValues, YPredicted)
