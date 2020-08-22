@@ -164,22 +164,33 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-
-#  FOLDERS
+#  DATA SET
 MajorityJudgeCases = ".\\Majority Judges"
-JudgeDemographics_File = ".\\Judge Demographics\\Justices Demographics.xlsx"
+JudgeDemographics_File = ".\\Judge Demographics\\Demographics.csv"
 
-# READ the XLSX file: Returns a dictionary # where the keys/columns are the headers of the excel table
-JudgeDemographics = pandas.read_excel(JudgeDemographics_File)
+# READ the CSV file: Returns a dictionary # where the keys/columns are the headers of the excel table
+JudgeDemographics = pandas.read_csv(JudgeDemographics_File)
 
-# CLEANING the Data: Removes rows will NULL points
-JudgeDemographics = JudgeDemographics.dropna()
+# CLEANING the Data
+JudgeDemographics = JudgeDemographics.dropna()  # Removes rows will NULL points, if any.
+JudgeDemographics.pop('name')
 
 # PREREQUISITE to Training: Get the Independent & Dependent Features
-YFeatures = ['ideo']  # ??
-XFeatures = JudgeDemographics.keys().remove('ideo')  # ??
+YFeatures = ['ideo']
+YData = JudgeDemographics[YFeatures].copy()  # Dependent Feature
+# print(YData)
+
+XFeatures = JudgeDemographics.columns.drop(YFeatures)
+XData = JudgeDemographics[XFeatures].copy()  # Independent Features
+# print(XData)
 
 # TRAINING the Model: Grow the tree
+XTrain, XTest, YTrain, YTest = train_test_split(XData, YData, test_size=0.3)
+Classifier = DecisionTreeClassifier()
+Classifier.fit(XTrain, YTrain)
 
-
+# TESTING the Model
+YPredicted = Classifier.predict(XTest)
+Accuracy = accuracy_score(YTest, YPredicted)
+ConfusionMatrix = confusion_matrix(YTest, YPredicted)
 

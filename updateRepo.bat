@@ -1,6 +1,6 @@
 git add .
 
-git commit -m "Update"
+git commit -m "Update: The Code"
 
 git pull
 
