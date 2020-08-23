@@ -165,14 +165,14 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-"""Accuracy = accuracy_score(numpy.array([0.1, 0.078, 0.2, 0.0005], dtype=int),
-                          numpy.array([0.343, 0.45, 0.2, 0.001], dtype=int))
-print(Accuracy)"""
 def AccuracyScore(true, predicted):
-    return 0
-
-def ConfusionMatrix(true, predicted):
-    return []
+    # Make sure the sizes are Equivalent, First!!
+    if len(true) != len(predicted):
+        return
+    error = numpy.array(true) - numpy.array(predicted)
+    square = numpy.power(error, 2)
+    mean = square.sum() / len(square)
+    return mean
 
 
 #  DATA SET
@@ -210,5 +210,4 @@ for values in YTest:
     YTestValues.append(values[0])
 YTestValues = numpy.array(YTestValues, dtype=float)
 print(YTestValues)
-Accuracy = AccuracyScore(YTestValues, YPredicted)  # Does not support float
-ConfusionMatrix = ConfusionMatrix(YTestValues, YPredicted)
+Accuracy = AccuracyScore(YTestValues, YPredicted)  # Using mean square error since regression, DUH!!
