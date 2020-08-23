@@ -9,8 +9,8 @@ For any justice who were first appointed by recess and then approved by the Sena
 Included columns:
 	name: justice's name.
 	childst: childhood location
+	childsur: childhood environment
 	famses: family economic status
-	famjud: tradition of judicial service within justice's family
 	nomrelig: religion
 	natorig: national origin
 	race
@@ -19,10 +19,6 @@ Included columns:
 	lawschn: number of law schools attended
 	militbr: military service branch (0 = no service)
 	agenom: age at time of nomination
-	parnom: political party affiliation at time of nomination
-	presname: name of the nominating president
-	prespart: political party affiliation of the nominating president
-	senparty: dominant political party of the senate at the time of nomination
 	ideo: ideology score of the justice. Used as the output of the demographics decision tree. Larger numbers mean more liberal.
 
-To copy only visible cells in Excel ofr creating a CSV file: https://www.laptopmag.com/articles/select-visible-cells-excel
+To copy only visible cells in Excel for creating a CSV file: https://www.laptopmag.com/articles/select-visible-cells-excel
