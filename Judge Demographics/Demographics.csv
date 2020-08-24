@@ -1,42 +1,42 @@
-name,childst,childsur,famses,nomrelig,natorig,race,gender,fathoccu,lawschn,militbr,agenom,ideo
-"Black, Hugo Lafayette",Alabama,Small town,Lower-middle,Baptist,Scotch/Irish,White,Male,Storekeeper,1,Army,51,0.875
-"Reed, Stanley Forman",Kentucky,Small town,Upper-middle,Protestant,English,White,Male,Physician,3,Army,53,0.725000024
-"Frankfurter, Felix",Austria,Urban (large/larger city),Lower-middle,Jewish,Austrian,White,Male,Merchant,1,Army,56,0.665000021
-"Douglas, William Orville",Washington,Small town,Lower,Presbyterian,Scotch,White,Male,Presbyterian minister,1,Army,40,0.730000019
-"Murphy, Francis (Frank) William",Michigan,Small town,Middle,Roman Catholic,Irish,White,Male,Lawyer,3,Army,49,1
-"Stone, Harlan Fiske",New Hampshire,Family farm,Middle,Episcopalian,English,White,Male,Farm owner,1,Did not serve,68,0.300000012
-"Byrnes, James Frances",South Carolina,Urban (large/larger city),Lower,Episcopalian,Irish,White,Male,Municipal clerk,0,Did not serve,62,0.330000013
-"Jackson, Robert Houghwout",New York,Small town,Middle,Episcopalian,Scotch,White,Male,Farm owner,1,Did not serve,49,1
-"Rutledge, Wiley Blount",Kentucky,Small town,Middle,Unitarian,English,White,Male,Baptist minister,2,Did not serve,48,1
-"Burton, Harold Hitz",Massachusetts,Urban (large/larger city),Middle,Unitarian,English/Swiss,White,Male,Professor,1,Army,57,0.280000001
-"Vinson, Fred Moore",Kentucky,Small town,Lower-middle,Methodist,English,White,Male,County jailer,1,Army,56,0.75
-"Clark, Tom Campbell",Texas,Urban (large/larger city),Upper-middle,Presbyterian,Scotch,White,Male,Lawyer,1,Army,49,0.5
-"Minton, Sherman",Indiana,Family farm,Lower-middle,Protestant,English,White,Male,Small farmer,1,Army,58,0.720000029
-"Warren, Earl",California,Small town,Lower-middle,Protestant,Scandinavian,White,Male,Railroad car mechanic,1,Army,62,0.75
-"Harlan, John Marshall (II)",Illinois,Urban (large/larger city),Upper,Presbyterian,English,White,Male,Lawyer,1,Army Air Force,55,0.875
-"Brennan, William Joseph, Jr.",New Jersey,Urban (large/larger city),Middle,Roman Catholic,Irish,White,Male,Labor organizer,1,Army,50,1
-"Whittaker, Charles Evans",Kansas,Family farm,Lower-middle,Methodist,English,White,Male,Farm owner,1,Did not serve,56,0.5
-"Stewart, Potter",Ohio,Urban (large/larger city),Upper,Episcopalian,English,White,Male,Lawyer,1,Navy,43,0.75
-"White, Byron Raymond",Colorado,Small town,Middle,Episcopalian,English,White,Male,Lumber company,1,Navy,44,0.5
-"Goldberg, Arthur Joseph",Illinois,Urban (large/larger city),Lower,Jewish,Russian,White,Male,Carter,1,Army,54,0.75
-"Fortas, Abe",Tennessee,Urban (large/larger city),Lower-middle,Jewish,English,White,Male,Cabinetmaker,1,Did not serve,55,1
-"Marshall, Thurgood",Maryland,Urban (large/larger city),Lower-middle,Episcopalian,African,Black,Male,Club steward,1,Did not serve,58,1
-"Burger, Warren Earl",Minnesota,Urban (large/larger city),Lower-middle,Presbyterian,Swiss/German,White,Male,Railroad cargo inspector,1,Did not serve,61,0.115000002
-"Blackmun, Harry Andrew",Minnesota,Urban (large/larger city),Middle,Methodist,English/German,White,Male,Businessman,1,Did not serve,61,0.115000002
-"Powell, Lewis Franklin, Jr.",Virginia,Urban (large/larger city),Upper,Presbyterian,English/Welsh,White,Male,Businessman,1,Army Air Force,64,0.165000007
-"Rehnquist, William Hubbs",Wisconsin,Urban (large/larger city),Upper-middle,Lutheran,Scandinavian,White,Male,Sales,1,Army Air Force,47,0.045000002
-"Stevens, John Paul",Illinois,Urban (large/larger city),Upper,Protestant,English,White,Male,Businessman,1,Navy,55,0.25
-"O'Connor, Sandra Day",Texas,Urban (large/larger city),Upper-middle,Episcopalian,English,White,Female,Rancher,1,Did not serve,51,0.414999992
-"Rehnquist, William Hubbs",Wisconsin,Urban (large/larger city),Upper-middle,Lutheran,Scandinavian,White,Male,Sales,1,Army Air Force,61,0.045000002
-"Scalia, Antonin",New York,Urban (large/larger city),Middle,Roman Catholic,Italian,White,Male,Professor,1,Did not serve,50,0
-"Kennedy, Anthony McLeod",California,Urban (large/larger city),Upper-middle,Roman Catholic,Irish,White,Male,Lawyer,1,National Guard,51,0.36500001
-"Souter, David H.",New Hampshire,Small town,Middle,Episcopalian,English,White,Male,Banker,1,Did not serve,50,0.324999988
-"Thomas, Clarence",Georgia,Small town,Lower,Roman Catholic,African,Black,Male,Farm worker,1,Did not serve,43,0.159999996
-"Ginsburg, Ruth Bader",New York,Urban (large/larger city),Middle,Jewish,German,White,Female,Merchant,2,Did not serve,60,0.680000007
-"Breyer, Stephen G.",California,Urban (large/larger city),Upper-middle,Jewish,German/Romanian/Prussian/Polish,White,Male,Lawyer,1,Army Reserve,55,0.474999994
-"Roberts, John G., Jr.",Indiana,Small town,Upper-middle,Roman Catholic,English/Czech,White,Male,Businessman,1,Did not serve,50,0.119999997
-"Alito, Samuel A., Jr.",New Jersey,Urban (large/larger city),Middle,Roman Catholic,Italian,White,Male,Teacher,1,Army Reserve,55,0.100000001
-"Sotomayor, Sonia Maria",New York,Urban (large/larger city),Lower-middle,Roman Catholic,Puerto Rican,Hispanic,Female,Tool-and-die worker,1,Did not serve,54,0.779999971
-"Kagan, Elena",New York,Urban (large/larger city),Upper-middle,Jewish,Russian,White,Female,Lawyer,1,Did not serve,50,0.730000019
-"Gorsuch, Neil McGill",Colorado,Urban (large/larger city),Upper-middle,Episcopalian,English/Irish/German,White,Male,Lawyer,1,Did not serve,49,0.109999999
-"Kavanaugh, Brett Michael",Maryland,Urban (large/larger city),Upper-middle,Roman Catholic,Irish,White,Male,Lawyer,1,Did not serve,53,0.07
+name,childst,childsur,famses,nomrelig,race,gender,lawschn,militbr,agenom,ideo
+"Black, Hugo Lafayette",Alabama,Small town,2,Baptist,White,Male,1,Army,51,0.875
+"Reed, Stanley Forman",Kentucky,Small town,4,Protestant,White,Male,3,Army,53,0.725000024
+"Frankfurter, Felix",Austria,Urban (large/larger city),2,Jewish,White,Male,1,Army,56,0.665000021
+"Douglas, William Orville",Washington,Small town,1,Presbyterian,White,Male,1,Army,40,0.730000019
+"Murphy, Francis (Frank) William",Michigan,Small town,3,Roman Catholic,White,Male,3,Army,49,1
+"Stone, Harlan Fiske",New Hampshire,Family farm,3,Episcopalian,White,Male,1,Did not serve,68,0.300000012
+"Byrnes, James Frances",South Carolina,Urban (large/larger city),1,Episcopalian,White,Male,0,Did not serve,62,0.330000013
+"Jackson, Robert Houghwout",New York,Small town,3,Episcopalian,White,Male,1,Did not serve,49,1
+"Rutledge, Wiley Blount",Kentucky,Small town,3,Unitarian,White,Male,2,Did not serve,48,1
+"Burton, Harold Hitz",Massachusetts,Urban (large/larger city),3,Unitarian,White,Male,1,Army,57,0.280000001
+"Vinson, Fred Moore",Kentucky,Small town,2,Methodist,White,Male,1,Army,56,0.75
+"Clark, Tom Campbell",Texas,Urban (large/larger city),4,Presbyterian,White,Male,1,Army,49,0.5
+"Minton, Sherman",Indiana,Family farm,2,Protestant,White,Male,1,Army,58,0.720000029
+"Warren, Earl",California,Small town,2,Protestant,White,Male,1,Army,62,0.75
+"Harlan, John Marshall (II)",Illinois,Urban (large/larger city),5,Presbyterian,White,Male,1,Army Air Force,55,0.875
+"Brennan, William Joseph, Jr.",New Jersey,Urban (large/larger city),3,Roman Catholic,White,Male,1,Army,50,1
+"Whittaker, Charles Evans",Kansas,Family farm,2,Methodist,White,Male,1,Did not serve,56,0.5
+"Stewart, Potter",Ohio,Urban (large/larger city),5,Episcopalian,White,Male,1,Navy,43,0.75
+"White, Byron Raymond",Colorado,Small town,3,Episcopalian,White,Male,1,Navy,44,0.5
+"Goldberg, Arthur Joseph",Illinois,Urban (large/larger city),1,Jewish,White,Male,1,Army,54,0.75
+"Fortas, Abe",Tennessee,Urban (large/larger city),2,Jewish,White,Male,1,Did not serve,55,1
+"Marshall, Thurgood",Maryland,Urban (large/larger city),2,Episcopalian,Black,Male,1,Did not serve,58,1
+"Burger, Warren Earl",Minnesota,Urban (large/larger city),2,Presbyterian,White,Male,1,Did not serve,61,0.115000002
+"Blackmun, Harry Andrew",Minnesota,Urban (large/larger city),3,Methodist,White,Male,1,Did not serve,61,0.115000002
+"Powell, Lewis Franklin, Jr.",Virginia,Urban (large/larger city),5,Presbyterian,White,Male,1,Army Air Force,64,0.165000007
+"Rehnquist, William Hubbs",Wisconsin,Urban (large/larger city),4,Lutheran,White,Male,1,Army Air Force,47,0.045000002
+"Stevens, John Paul",Illinois,Urban (large/larger city),5,Protestant,White,Male,1,Navy,55,0.25
+"O'Connor, Sandra Day",Texas,Urban (large/larger city),4,Episcopalian,White,Female,1,Did not serve,51,0.414999992
+"Rehnquist, William Hubbs",Wisconsin,Urban (large/larger city),4,Lutheran,White,Male,1,Army Air Force,61,0.045000002
+"Scalia, Antonin",New York,Urban (large/larger city),3,Roman Catholic,White,Male,1,Did not serve,50,0
+"Kennedy, Anthony McLeod",California,Urban (large/larger city),4,Roman Catholic,White,Male,1,National Guard,51,0.36500001
+"Souter, David H.",New Hampshire,Small town,3,Episcopalian,White,Male,1,Did not serve,50,0.324999988
+"Thomas, Clarence",Georgia,Small town,1,Roman Catholic,Black,Male,1,Did not serve,43,0.159999996
+"Ginsburg, Ruth Bader",New York,Urban (large/larger city),3,Jewish,White,Female,2,Did not serve,60,0.680000007
+"Breyer, Stephen G.",California,Urban (large/larger city),4,Jewish,White,Male,1,Army Reserve,55,0.474999994
+"Roberts, John G., Jr.",Indiana,Small town,4,Roman Catholic,White,Male,1,Did not serve,50,0.119999997
+"Alito, Samuel A., Jr.",New Jersey,Urban (large/larger city),3,Roman Catholic,White,Male,1,Army Reserve,55,0.100000001
+"Sotomayor, Sonia Maria",New York,Urban (large/larger city),2,Roman Catholic,Hispanic,Female,1,Did not serve,54,0.779999971
+"Kagan, Elena",New York,Urban (large/larger city),4,Jewish,White,Female,1,Did not serve,50,0.730000019
+"Gorsuch, Neil McGill",Colorado,Urban (large/larger city),4,Episcopalian,White,Male,1,Did not serve,49,0.109999999
+"Kavanaugh, Brett Michael",Maryland,Urban (large/larger city),4,Roman Catholic,White,Male,1,Did not serve,53,0.07

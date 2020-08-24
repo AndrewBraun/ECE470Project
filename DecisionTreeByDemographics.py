@@ -7,10 +7,8 @@ READING THE JUSTICE DEMOGRAPHIC:
     childsur: Childhood env.
     famses: Family Economic Status
     nomrelig: Religion
-    natorig: National Origin
     race
     gender
-    fathoccu: Father's Occupation, Page 33
     lawschn: Number of Law Schools attended
     militbr: Military Branch Service
     agenom: Age at time of nomination
@@ -30,6 +28,7 @@ import os
 import numpy
 import pandas
 import openpyxl
+from sklearn.preprocessing import LabelEncoder
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
@@ -54,6 +53,25 @@ JudgeDemographics = pandas.read_csv(JudgeDemographics_File)
 JudgeDemographics = JudgeDemographics.dropna()  # Removes rows will NULL points, if any.
 JudgeDemographics.pop('name')
 
+# Classifying categorical features as such
+childst_label_encoder = LabelEncoder()
+JudgeDemographics['childst'] = childst_label_encoder.fit_transform(JudgeDemographics['childst'])
+
+childsur_label_encoder = LabelEncoder()
+JudgeDemographics['childsur'] = childsur_label_encoder.fit_transform(JudgeDemographics['childsur'])
+
+nomrelig_label_encoder = LabelEncoder()
+JudgeDemographics['nomrelig'] = nomrelig_label_encoder.fit_transform(JudgeDemographics['nomrelig'])
+
+race_label_encoder = LabelEncoder()
+JudgeDemographics['race'] = race_label_encoder.fit_transform(JudgeDemographics['race'])
+
+gender_label_encoder = LabelEncoder()
+JudgeDemographics['gender'] = gender_label_encoder.fit_transform(JudgeDemographics['gender'])
+
+militbr_label_encoder = LabelEncoder()
+JudgeDemographics['militbr'] = militbr_label_encoder.fit_transform(JudgeDemographics['militbr'])
+
 # PREREQUISITE to Training: Get the Independent & Dependent Features
 YFeatures = ['ideo']
 YData = JudgeDemographics[YFeatures].copy()  # Dependent Feature
@@ -65,7 +83,7 @@ XData = JudgeDemographics[XFeatures].copy()  # Independent Features
 
 # TRAINING the Model: Grow the tree
 XTrain, XTest, YTrain, YTest = train_test_split(XData, YData, test_size=0.3)
-decisionTreeRegressor = DecisionTreeRegressor()
+decisionTreeRegressor = DecisionTreeRegressor(max_depth=3)
 decisionTreeRegressor.fit(XTrain, YTrain)
 
 # TESTING the Model
