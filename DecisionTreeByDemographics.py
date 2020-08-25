@@ -24,77 +24,82 @@ THE ALGORITHM:
 ENCOUNTERED PROBLEMS:
     Correlating the demographics with the cases.
 """
-import os
-import numpy
-import pandas
-import openpyxl
-from sklearn.preprocessing import LabelEncoder
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix
 
-"""Accuracy = accuracy_score(numpy.array([0.1, 0.078, 0.2, 0.0005], dtype=int),
-                          numpy.array([0.343, 0.45, 0.2, 0.001], dtype=int))
-print(Accuracy)"""
-def AccuracyScore(true, predicted):
-    return 0
+# https://stackoverflow.com/a/43231461
+import pyspark
+from pyspark.context import SparkContext
+from pyspark.sql.session import SparkSession
+from pyspark.ml import Pipeline
+from pyspark.ml.regression import DecisionTreeRegressor
+from pyspark.ml.feature import StringIndexer
+from pyspark.ml.feature import OneHotEncoder
+from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.evaluation import RegressionEvaluator
 
-def ConfusionMatrix(true, predicted):
-    return []
-
+sc = SparkContext('local')
+spark = SparkSession(sc)
 
 #  DATA SET
 JudgeDemographics_File = ".\\Judge Demographics\\Demographics.csv"
 
-# READ the CSV file: Returns a dictionary # where the keys/columns are the headers of the excel table
-JudgeDemographics = pandas.read_csv(JudgeDemographics_File)
+# READ the CSV file
+JudgeDemographics = spark.read.format("csv").options(header='true').load(JudgeDemographics_File)
 
 # CLEANING the Data
-JudgeDemographics = JudgeDemographics.dropna()  # Removes rows will NULL points, if any.
-JudgeDemographics.pop('name')
+JudgeDemographics = JudgeDemographics.drop('name')
 
 # Classifying categorical features as such
-childst_label_encoder = LabelEncoder()
-JudgeDemographics['childst'] = childst_label_encoder.fit_transform(JudgeDemographics['childst'])
+#childst
+#childsur
+#nomrelig
+#race
+#militbr
 
-childsur_label_encoder = LabelEncoder()
-JudgeDemographics['childsur'] = childsur_label_encoder.fit_transform(JudgeDemographics['childsur'])
+childst_indexer = StringIndexer(inputCol='childst', outputCol='childst_index')
+childst_indexer_model = childst_indexer.fit(JudgeDemographics)
+JudgeDemographics = childst_indexer_model.transform(JudgeDemographics)
 
-nomrelig_label_encoder = LabelEncoder()
-JudgeDemographics['nomrelig'] = nomrelig_label_encoder.fit_transform(JudgeDemographics['nomrelig'])
+childsur_indexer = StringIndexer(inputCol='childsur', outputCol='childsur_index')
+childsur_indexer_model = childsur_indexer.fit(JudgeDemographics)
+JudgeDemographics = childsur_indexer_model.transform(JudgeDemographics)
 
-race_label_encoder = LabelEncoder()
-JudgeDemographics['race'] = race_label_encoder.fit_transform(JudgeDemographics['race'])
+nomrelig_indexer = StringIndexer(inputCol='nomrelig', outputCol='nomrelig_index')
+nomrelig_indexer_model = nomrelig_indexer.fit(JudgeDemographics)
+JudgeDemographics = nomrelig_indexer_model.transform(JudgeDemographics)
 
-gender_label_encoder = LabelEncoder()
-JudgeDemographics['gender'] = gender_label_encoder.fit_transform(JudgeDemographics['gender'])
+race_indexer = StringIndexer(inputCol='race', outputCol='race_index')
+race_indexer_model = race_indexer.fit(JudgeDemographics)
+JudgeDemographics = race_indexer_model.transform(JudgeDemographics)
 
-militbr_label_encoder = LabelEncoder()
-JudgeDemographics['militbr'] = militbr_label_encoder.fit_transform(JudgeDemographics['militbr'])
+militbr_indexer = StringIndexer(inputCol='militbr', outputCol='militbr_index')
+militbr_indexer_model = militbr_indexer.fit(JudgeDemographics)
+JudgeDemographics = militbr_indexer_model.transform(JudgeDemographics)
 
-# PREREQUISITE to Training: Get the Independent & Dependent Features
-YFeatures = ['ideo']
-YData = JudgeDemographics[YFeatures].copy()  # Dependent Feature
-# print(YData)
+ohe = OneHotEncoder(inputCols=['childst_index', 'childsur_index', 'nomrelig_index', 'race_index', 'militbr_index'], outputCols=['childst_ohe', 'childsur_ohe', 'nomrelig_ohe', 'race_ohe', 'militbr_ohe'])
+ohe_model = ohe.fit(JudgeDemographics)
+JudgeDemographics = ohe_model.transform(JudgeDemographics)
 
-XFeatures = JudgeDemographics.columns.drop(YFeatures)
-XData = JudgeDemographics[XFeatures].copy()  # Independent Features
-# print(XData)
+JudgeDemographics.show()
+exit()
+
+feature_columns = JudgeDemographics.columns[:-1]
+assembler = VectorAssembler(inputCols=feature_columns, outputCol='features')
 
 # TRAINING the Model: Grow the tree
-XTrain, XTest, YTrain, YTest = train_test_split(XData, YData, test_size=0.3)
-decisionTreeRegressor = DecisionTreeRegressor(max_depth=3)
-decisionTreeRegressor.fit(XTrain, YTrain)
+(trainingData, testData) = JudgeDemographics.randomSplit([0.7, 0.3])
+
+dtr = DecisionTreeRegressor(featuresCol='features', labelCol='ideo')
+
+pipeline = Pipeline(stages=[assembler, dtr])
+
+model = pipeline.fit(trainingData)
 
 # TESTING the Model
-YPredicted = decisionTreeRegressor.predict(XTest)
-YPredicted = numpy.array(YPredicted, dtype=float)
-print(YPredicted)
-YTest = YTest[YFeatures].values
-YTestValues = []
-for values in YTest:
-    YTestValues.append(values[0])
-YTestValues = numpy.array(YTestValues, dtype=float)
-print(YTestValues)
-Accuracy = AccuracyScore(YTestValues, YPredicted)  # Does not support float
-ConfusionMatrix = ConfusionMatrix(YTestValues, YPredicted)
+predictions = model.transform(testData)
+
+evaluator = RegressionEvaluator(labelCol='ideo', predictionCol='prediction', metricName='rmse')
+rmse = evaluator.evaluate(predictions)
+print("Root Mean Square Error: " + str(rmse))
+
+# Print the model
+print(model.stages[1])
