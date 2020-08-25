@@ -20,15 +20,14 @@ THE ALGORITHM:
     For each judge, we compare their demographics to their voting records and find if there is any correlation.
     We will also calculate the agreement rate between any two judges on the same case,
         and look at what demographic factors affect the agreement rate.
-
-ENCOUNTERED PROBLEMS:
-    Correlating the demographics with the cases.
 """
 
 # https://stackoverflow.com/a/43231461
 import pyspark
 from pyspark.context import SparkContext
 from pyspark.sql.session import SparkSession
+from pyspark.sql.types import IntegerType
+from pyspark.sql.types import DoubleType
 from pyspark.ml import Pipeline
 from pyspark.ml.regression import DecisionTreeRegressor
 from pyspark.ml.feature import StringIndexer
@@ -79,20 +78,24 @@ ohe = OneHotEncoder(inputCols=['childst_index', 'childsur_index', 'nomrelig_inde
 ohe_model = ohe.fit(JudgeDemographics)
 JudgeDemographics = ohe_model.transform(JudgeDemographics)
 
-JudgeDemographics.show()
-exit()
+# stackoverflow.com/a/32286450
+JudgeDemographics = JudgeDemographics \
+	.withColumn('famses', JudgeDemographics['famses'].cast(IntegerType())) \
+	.withColumn('gender', JudgeDemographics['gender'].cast(IntegerType())) \
+	.withColumn('lawschn', JudgeDemographics['lawschn'].cast(IntegerType())) \
+	.withColumn('agenom', JudgeDemographics['agenom'].cast(IntegerType())) \
+	.withColumn('ideo', JudgeDemographics['ideo'].cast(DoubleType()))
 
-feature_columns = JudgeDemographics.columns[:-1]
-assembler = VectorAssembler(inputCols=feature_columns, outputCol='features')
+# https://spark.apache.org/docs/latest/ml-features.html#vectorassembler
+assembler = VectorAssembler(inputCols=['childst_ohe', 'childsur_ohe', 'famses', 'nomrelig_ohe', 'race_ohe', 'gender', 'lawschn', 'militbr_ohe', 'agenom'], outputCol='features')
+JudgeDemographics = assembler.transform(JudgeDemographics)
 
-# TRAINING the Model: Grow the tree
+# TRAINING the Model
 (trainingData, testData) = JudgeDemographics.randomSplit([0.7, 0.3])
 
 dtr = DecisionTreeRegressor(featuresCol='features', labelCol='ideo')
 
-pipeline = Pipeline(stages=[assembler, dtr])
-
-model = pipeline.fit(trainingData)
+model = dtr.fit(trainingData)
 
 # TESTING the Model
 predictions = model.transform(testData)
@@ -102,4 +105,4 @@ rmse = evaluator.evaluate(predictions)
 print("Root Mean Square Error: " + str(rmse))
 
 # Print the model
-print(model.stages[1])
+print(model)
